@@ -11,12 +11,17 @@ namespace CVGS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Platform
     {
         public int platformID { get; set; }
+        [Display(Name = "Platform")]
+        [Required]
         public string platformName { get; set; }
+        [Display(Name = "Created At")]
         public Nullable<System.DateTime> createdDate { get; set; }
+        [Display(Name = "Updated At")]
         public Nullable<System.DateTime> updatedDate { get; set; }
     }
 }

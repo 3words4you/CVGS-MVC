@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlatformController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -253,6 +254,11 @@
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Platform\Create.cshtml" />
+    <Content Include="Views\Platform\Delete.cshtml" />
+    <Content Include="Views\Platform\Details.cshtml" />
+    <Content Include="Views\Platform\Edit.cshtml" />
+    <Content Include="Views\Platform\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
