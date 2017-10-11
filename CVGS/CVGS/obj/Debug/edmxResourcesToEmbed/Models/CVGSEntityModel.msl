@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CVGSModelStoreContainer" CdmEntityContainer="CVGSEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="CVGSModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="CVGSModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="CVGSModel.Game">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="gameID" ColumnName="gameID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="develpoer" ColumnName="develpoer" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="releasedDate" ColumnName="releasedDate" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="subCategoryID" ColumnName="subCategoryID" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Platforms">
+      <EntityTypeMapping TypeName="CVGSModel.Platform">
+        <MappingFragment StoreEntitySet="Platforms">
+          <ScalarProperty Name="platformID" ColumnName="platformID" />
+          <ScalarProperty Name="platformName" ColumnName="platformName" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="CVGSModel.Review">
+        <MappingFragment StoreEntitySet="Reviews">
+          <ScalarProperty Name="reviewID" ColumnName="reviewID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="gameID" ColumnName="gameID" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="displayStatus" ColumnName="displayStatus" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CVGSModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

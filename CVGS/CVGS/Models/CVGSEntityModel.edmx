@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="eventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="startDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="gameID" />
+          </Key>
+          <Property Name="gameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="develpoer" Type="varchar" MaxLength="100" />
+          <Property Name="publisher" Type="varchar" MaxLength="100" />
+          <Property Name="releasedDate" Type="date" />
+          <Property Name="price" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="categoryID" Type="int" />
+          <Property Name="subCategoryID" Type="int" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Platforms">
+          <Key>
+            <PropertyRef Name="platformID" />
+          </Key>
+          <Property Name="platformID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="platformName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="reviewID" />
+          </Key>
+          <Property Name="reviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="comment" Type="text" />
+          <Property Name="status" Type="int" />
+          <Property Name="displayStatus" Type="varchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_categoryID">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Games" Type="Self.Games" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_review_gameID">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_review_userID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subCategoryID">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Games" Type="Self.Games" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="subCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CVGSModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platforms" EntityType="Self.Platforms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_categoryID" Association="Self.FK_categoryID">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_gameID" Association="Self.FK_review_gameID">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_userID" Association="Self.FK_review_userID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subCategoryID" Association="Self.FK_subCategoryID">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CVGSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_categoryID" FromRole="Categories" ToRole="Games" />
+          <NavigationProperty Name="Games1" Relationship="Self.FK_subCategoryID" FromRole="Categories" ToRole="Games" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="eventID" />
+          </Key>
+          <Property Name="eventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="gameID" />
+          </Key>
+          <Property Name="gameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="develpoer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="publisher" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="releasedDate" Type="DateTime" Precision="0" />
+          <Property Name="price" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="categoryID" Type="Int32" />
+          <Property Name="subCategoryID" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_categoryID" FromRole="Games" ToRole="Categories" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_subCategoryID" FromRole="Games" ToRole="Categories" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_review_gameID" FromRole="Games" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="platformID" />
+          </Key>
+          <Property Name="platformID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="platformName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="reviewID" />
+          </Key>
+          <Property Name="reviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="gameID" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="displayStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_review_gameID" FromRole="Reviews" ToRole="Games" />
+          <NavigationProperty Name="User" Relationship="Self.FK_review_userID" FromRole="Reviews" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_review_userID" FromRole="Users" ToRole="Reviews" />
+        </EntityType>
+        <Association Name="FK_categoryID">
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Games" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subCategoryID">
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Games" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="subCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_review_gameID">
+          <End Role="Games" Type="Self.Game" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="gameID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="gameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_review_userID">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CVGSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="Platforms" EntityType="Self.Platform" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_categoryID" Association="Self.FK_categoryID">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subCategoryID" Association="Self.FK_subCategoryID">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_gameID" Association="Self.FK_review_gameID">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_review_userID" Association="Self.FK_review_userID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CVGSModelStoreContainer" CdmEntityContainer="CVGSEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CVGSModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="CVGSModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="eventID" ColumnName="eventID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="CVGSModel.Game">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="develpoer" ColumnName="develpoer" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="releasedDate" ColumnName="releasedDate" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="subCategoryID" ColumnName="subCategoryID" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platforms">
+            <EntityTypeMapping TypeName="CVGSModel.Platform">
+              <MappingFragment StoreEntitySet="Platforms">
+                <ScalarProperty Name="platformID" ColumnName="platformID" />
+                <ScalarProperty Name="platformName" ColumnName="platformName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="CVGSModel.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="reviewID" ColumnName="reviewID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="gameID" ColumnName="gameID" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="displayStatus" ColumnName="displayStatus" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CVGSModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
