@@ -11,7 +11,8 @@ namespace CVGS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Game
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,17 +22,35 @@ namespace CVGS.Models
         }
     
         public int gameID { get; set; }
+        [Required]
+        [Display(Name = "Title")]
         public string title { get; set; }
+        [Required]
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
+        [Required]
+        [Display(Name = "Develpoer")]
         public string develpoer { get; set; }
+        [Required]
+        [Display(Name = "Publisher")]
         public string publisher { get; set; }
+        [Required]
+        [Display(Name = "Released Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> releasedDate { get; set; }
+        [Required]
+        [Display(Name = "Price")]
+        [Range(0, 999.99)]
         public Nullable<decimal> price { get; set; }
+        
         public Nullable<int> categoryID { get; set; }
+        
         public Nullable<int> subCategoryID { get; set; }
+        [Display(Name = "Created At")]
         public Nullable<System.DateTime> createdDate { get; set; }
+        [Display(Name = "Updated At")]
         public Nullable<System.DateTime> updatedDate { get; set; }
-    
         public virtual Category Category { get; set; }
         public virtual Category Category1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

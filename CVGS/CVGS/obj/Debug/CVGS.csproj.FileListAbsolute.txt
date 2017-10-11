@@ -91,3 +91,4 @@ C:\Users\moyi0\Desktop\CVGS-MVC\CVGS\CVGS\bin\Microsoft.AI.Web.xml
 C:\Users\moyi0\Desktop\CVGS-MVC\CVGS\CVGS\obj\Debug\CVGS.csproj.CoreCompileInputs.cache
 C:\Users\moyi0\Desktop\CVGS-MVC\CVGS\CVGS\obj\Debug\CVGS.dll
 C:\Users\moyi0\Desktop\CVGS-MVC\CVGS\CVGS\obj\Debug\CVGS.pdb
+C:\Users\moyi0\Desktop\CVGS-MVC\CVGS\CVGS\obj\Debug\CVGS.csprojResolveAssemblyReference.cache
