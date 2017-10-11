@@ -38,7 +38,8 @@ namespace CVGS.Models
         [Required]
         [Display(Name = "Released Date")]
         [DataType(DataType.Date)]
-        public Nullable<System.DateTime> releasedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public System.DateTime releasedDate { get; set; }
         [Required]
         [Display(Name = "Price")]
         [Range(0, 999.99)]

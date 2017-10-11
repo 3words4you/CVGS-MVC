@@ -42,7 +42,7 @@ namespace CVGS.Controllers
             ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName");
 
             var subCategoryList = new SelectList(db.Categories, "categoryID", "categoryName").ToList();
-            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "null" }));
+            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "0" }));
             ViewBag.subCategoryID = subCategoryList;
 
             return View();
@@ -67,7 +67,7 @@ namespace CVGS.Controllers
             ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", game.categoryID);
 
             var subCategoryList = new SelectList(db.Categories, "categoryID", "categoryName").ToList();
-            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "null" }));
+            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "0" }));
             ViewBag.subCategoryID = subCategoryList;
             return View(game);
         }
@@ -86,8 +86,8 @@ namespace CVGS.Controllers
             }
             ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", game.categoryID);
 
-            var subCategoryList = new SelectList(db.Categories, "categoryID", "categoryName").ToList();
-            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "null" }));
+            var subCategoryList = new SelectList(db.Categories, "categoryID", "categoryName", game.subCategoryID).ToList();
+            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "0" }));
             ViewBag.subCategoryID = subCategoryList;
             return View(game);
         }
@@ -108,9 +108,9 @@ namespace CVGS.Controllers
             }
             ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", game.categoryID);
 
-            var subCategoryList = new SelectList(db.Categories, "categoryID", "categoryName").ToList();
-            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "null" }));
-            ViewBag.subCategoryID = subCategoryList;
+            var subCategoryList = new SelectList(db.Categories, "categoryID", "categoryName",game.subCategoryID).ToList();
+            subCategoryList.Insert(0, (new SelectListItem { Text = "None", Value = "0" }));
+            
             return View(game);
         }
 
