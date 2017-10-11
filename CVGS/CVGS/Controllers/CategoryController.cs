@@ -50,6 +50,8 @@ namespace CVGS.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.createdDate = DateTime.Now;
+                category.updatedDate = DateTime.Now;
                 db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +84,7 @@ namespace CVGS.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.updatedDate = DateTime.Now;
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

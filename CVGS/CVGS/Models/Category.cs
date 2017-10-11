@@ -6,6 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System.ComponentModel.DataAnnotations;
 
 namespace CVGS.Models
 {
@@ -22,8 +23,14 @@ namespace CVGS.Models
         }
     
         public int categoryID { get; set; }
+        
+        
+        [Display(Name = "Category")]
+        [Required]
         public string categoryName { get; set; }
+        [Display(Name = "Created At")]
         public Nullable<System.DateTime> createdDate { get; set; }
+        [Display(Name = "Updated At")]
         public Nullable<System.DateTime> updatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
