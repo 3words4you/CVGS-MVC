@@ -5,81 +5,87 @@
 }
 
 <h2>Edit</h2>
+    <dl class="dl-horizontal">
+        <dt>
+            Comment
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.comment)
+        </dd>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+        <dt>
+            Display Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayStatus)
+        </dd>
+
+        <dt>
+            Game Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.title)
+        </dd>
+
+        <dt>
+            User
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+        <dt>
+            Created At
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+            Updated At
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedDate)
+        </dd>
+
+    </dl>
     
-    <div class="form-horizontal">
-        <h4>Review</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.reviewID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.userID, "userID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("userID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.gameID, "gameID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("gameID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.gameID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.comment, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.displayStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.displayStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.displayStatus, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.createdDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.createdDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createdDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.updatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.updatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.updatedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button onclick="location.href='@Url.Action("Approve", "Review")'">Approve</button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-lg-4">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6">
+                   @using (Html.BeginForm("Approve", "Review"))
+                   {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.reviewID)
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Approve" class="btn btn-default" />
+                    </div>
+                   }
+                </div>
+                <div class="col-sm-6 col-lg-6">
+                    @using (Html.BeginForm("Deny", "Review"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.reviewID)
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Deny" class="btn btn-default" />
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-}
+</div>
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

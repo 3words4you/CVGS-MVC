@@ -39,8 +39,30 @@ namespace CVGS.Controllers
         // POST: Review/Approve/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Approve(int id)
+        public ActionResult Approve([Bind(Include = "reviewID")] Review thisReview)
         {
+            var id = thisReview.reviewID;
+            Review review = db.Reviews.Find(id);
+            review.status = 1;
+            review.displayStatus = "Approved";
+            review.updatedDate = DateTime.Now;
+            db.Entry(review).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Review/Deny/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deny([Bind(Include = "reviewID")] Review thisReview)
+        {
+            var id = thisReview.reviewID;
+            Review review = db.Reviews.Find(id);
+            review.status = 2;
+            review.displayStatus = "Denied";
+            review.updatedDate = DateTime.Now;
+            db.Entry(review).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.comment)
+            Comment
         </dt>
 
         <dd>
@@ -20,15 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.displayStatus)
+            Display Status
         </dt>
 
         <dd>
@@ -36,23 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createdDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.updatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.updatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Game.title)
+            Game Title
         </dt>
 
         <dd>
@@ -60,11 +36,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User.username)
+            User
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+        <dt>
+            Created At
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+           Updated At
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedDate)
         </dd>
 
     </dl>
