@@ -11,15 +11,30 @@ namespace CVGS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Event
     {
         public int eventID { get; set; }
+        [Required]
+        [Display(Name = "Title")]
         public string title { get; set; }
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> startDate { get; set; }
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> endDate { get; set; }
+        [Display(Name = "Created At")]
         public Nullable<System.DateTime> createdDate { get; set; }
+        [Display(Name = "Updated At")]
         public Nullable<System.DateTime> updatedDate { get; set; }
     }
 }
