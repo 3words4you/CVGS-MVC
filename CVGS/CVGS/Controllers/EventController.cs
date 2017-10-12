@@ -90,6 +90,11 @@ namespace CVGS.Controllers
             if (ModelState.IsValid)
             {
                 @event.updatedDate = DateTime.Now;
+                if (@event.startDate > @event.endDate)
+                {
+                    ModelState.AddModelError("endDate", "End Date can not earier than start date");
+                    return View(@event);
+                }
                 db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
