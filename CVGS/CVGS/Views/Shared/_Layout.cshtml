@@ -17,6 +17,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("CVGS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -28,7 +30,20 @@
                     <li>@Html.ActionLink("Event", "Index", "Event")</li>
                     <li>@Html.ActionLink("Review", "Index", "Review")</li>
                 </ul>
+                <span class="navbar-text navbar-right">
+                    @if (Session["user"] != null)
+                    {
+                        <span> @Session["user"] | </span> <span>@Html.ActionLink("Sign Out", "Logout", "Account")</span>;
+                    }
+                    else
+                    {
+                        <span>@Html.ActionLink("Sign In", "Login", "Account") | </span>  
+                        <span>@Html.ActionLink("Sign Up", "Register", "Account")</span>;
+                    }
+                </span>
+                
             </div>
+            
         </div>
     </div>
     <div class="container body-content">
