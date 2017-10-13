@@ -28,6 +28,7 @@ namespace CVGS.Controllers
                     return View(account);
                 }
                 Session["user"] = user.username;
+                Session["role"] = user.role;
                 return RedirectToAction("Index", "Home");
             }
             return View(account);
@@ -39,6 +40,7 @@ namespace CVGS.Controllers
         public ActionResult Logout()
         {
             Session["user"] = null;
+            Session["role"] = null;
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
@@ -61,6 +63,7 @@ namespace CVGS.Controllers
                 db.Users.Add(user);
                 db.SaveChanges();
                 Session["user"] = user.username;
+                Session["role"] = user.role;
                 return RedirectToAction("Index", "Home");
             }
             return View(account);
