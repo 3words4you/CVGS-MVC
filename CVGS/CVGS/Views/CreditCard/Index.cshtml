@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CVGS.Models.CreditCard>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.owner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cardNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expiredDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDefault)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedDate)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.owner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cardNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expiredDate)
+        </td>
+        <td>
+            @if (item.isDefault == 1)
+            {
+                <div>Yes</div>
+            }
+            else
+            {
+                <div>No</div>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updatedDate)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.creditCardID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.creditCardID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.creditCardID })
+        </td>
+    </tr>
+}
+
+</table>

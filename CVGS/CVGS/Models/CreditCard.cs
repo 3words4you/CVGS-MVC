@@ -11,15 +11,30 @@ namespace CVGS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class CreditCard
     {
         public int creditCardID { get; set; }
         public int userID { get; set; }
+        [Required]
+        [Display(Name = "Owner")]
         public string owner { get; set; }
+        [Required]
+        [Display(Name = "Card Number")]
+        [DataType(DataType.CreditCard)]
         public string cardNumber { get; set; }
+        [Required]
+        [Display(Name = "Code")]
+        [RegularExpression("^[0-9][0-9][0-9]$",ErrorMessage ="Invalid Code")]
         public int code { get; set; }
+        [Required]
+        [Display(Name = "Expired Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime expiredDate { get; set; }
+        [Required]
+        [Display(Name = "Is Default Credit Card")]
+      
         public int isDefault { get; set; }
         public Nullable<System.DateTime> createdDate { get; set; }
         public Nullable<System.DateTime> updatedDate { get; set; }

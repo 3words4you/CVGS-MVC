@@ -68,6 +68,9 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="CVGSModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="userID" ColumnName="userID" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />

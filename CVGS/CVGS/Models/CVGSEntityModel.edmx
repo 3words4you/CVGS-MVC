@@ -34,7 +34,7 @@
           <Property Name="creditCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userID" Type="int" Nullable="false" />
           <Property Name="owner" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="cardNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="cardNumber" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="code" Type="int" Nullable="false" />
           <Property Name="expiredDate" Type="datetime" Nullable="false" />
           <Property Name="isDefault" Type="int" Nullable="false" />
@@ -102,10 +102,13 @@
           <Property Name="gender" Type="varchar" MaxLength="50" />
           <Property Name="dob" Type="date" />
           <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="40" />
+          <Property Name="avatar" Type="varchar" MaxLength="500" />
           <Property Name="createdDate" Type="datetime" />
           <Property Name="updatedDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Addresses__userI__239E4DCF">
+        <Association Name="FK__Addresses__userI__38996AB5">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CreditCar__userI__267ABA7A">
+        <Association Name="FK__CreditCar__userI__37A5467C">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="CreditCards" Type="Self.CreditCards" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,11 +177,11 @@
           <EntitySet Name="Platforms" EntityType="Self.Platforms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Addresses__userI__239E4DCF" Association="Self.FK__Addresses__userI__239E4DCF">
+          <AssociationSet Name="FK__Addresses__userI__38996AB5" Association="Self.FK__Addresses__userI__38996AB5">
             <End Role="Users" EntitySet="Users" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="FK__CreditCar__userI__267ABA7A" Association="Self.FK__CreditCar__userI__267ABA7A">
+          <AssociationSet Name="FK__CreditCar__userI__37A5467C" Association="Self.FK__CreditCar__userI__37A5467C">
             <End Role="Users" EntitySet="Users" />
             <End Role="CreditCards" EntitySet="CreditCards" />
           </AssociationSet>
@@ -281,6 +284,9 @@
           <NavigationProperty Name="Reviews" Relationship="Self.FK_review_userID" FromRole="Users" ToRole="Reviews" />
           <NavigationProperty Name="Addresses" Relationship="CVGSModel.FK__Addresses__userI__239E4DCF" FromRole="User" ToRole="Address" />
           <NavigationProperty Name="CreditCards" Relationship="CVGSModel.FK__CreditCar__userI__267ABA7A" FromRole="User" ToRole="CreditCard" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_categoryID">
           <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
@@ -385,7 +391,7 @@
           <Property Name="creditCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userID" Type="Int32" Nullable="false" />
           <Property Name="owner" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="cardNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="cardNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="code" Type="Int32" Nullable="false" />
           <Property Name="expiredDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="isDefault" Type="Int32" Nullable="false" />
@@ -490,6 +496,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CVGSModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />

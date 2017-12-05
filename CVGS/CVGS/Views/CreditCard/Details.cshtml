@@ -1,0 +1,89 @@
+﻿@model CVGS.Models.CreditCard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CreditCard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.owner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expiredDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expiredDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDefault)
+        </dt>
+
+        <dd>
+            @if (Model.isDefault == 1)
+            {
+            <div>Yes</div>
+            }
+            else
+            {
+            <div>No</div>
+            }    
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.creditCardID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

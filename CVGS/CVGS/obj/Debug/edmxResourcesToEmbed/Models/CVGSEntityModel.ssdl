@@ -29,7 +29,7 @@
     <Property Name="creditCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userID" Type="int" Nullable="false" />
     <Property Name="owner" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="cardNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="cardNumber" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="code" Type="int" Nullable="false" />
     <Property Name="expiredDate" Type="datetime" Nullable="false" />
     <Property Name="isDefault" Type="int" Nullable="false" />
@@ -97,10 +97,13 @@
     <Property Name="gender" Type="varchar" MaxLength="50" />
     <Property Name="dob" Type="date" />
     <Property Name="role" Type="varchar" MaxLength="50" />
+    <Property Name="phone" Type="varchar" MaxLength="15" />
+    <Property Name="email" Type="varchar" MaxLength="40" />
+    <Property Name="avatar" Type="varchar" MaxLength="500" />
     <Property Name="createdDate" Type="datetime" />
     <Property Name="updatedDate" Type="datetime" />
   </EntityType>
-  <Association Name="FK__Addresses__userI__239E4DCF">
+  <Association Name="FK__Addresses__userI__38996AB5">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
     <ReferentialConstraint>
@@ -112,7 +115,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CreditCar__userI__267ABA7A">
+  <Association Name="FK__CreditCar__userI__37A5467C">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="CreditCards" Type="Self.CreditCards" Multiplicity="*" />
     <ReferentialConstraint>
@@ -169,11 +172,11 @@
     <EntitySet Name="Platforms" EntityType="Self.Platforms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Addresses__userI__239E4DCF" Association="Self.FK__Addresses__userI__239E4DCF">
+    <AssociationSet Name="FK__Addresses__userI__38996AB5" Association="Self.FK__Addresses__userI__38996AB5">
       <End Role="Users" EntitySet="Users" />
       <End Role="Addresses" EntitySet="Addresses" />
     </AssociationSet>
-    <AssociationSet Name="FK__CreditCar__userI__267ABA7A" Association="Self.FK__CreditCar__userI__267ABA7A">
+    <AssociationSet Name="FK__CreditCar__userI__37A5467C" Association="Self.FK__CreditCar__userI__37A5467C">
       <End Role="Users" EntitySet="Users" />
       <End Role="CreditCards" EntitySet="CreditCards" />
     </AssociationSet>

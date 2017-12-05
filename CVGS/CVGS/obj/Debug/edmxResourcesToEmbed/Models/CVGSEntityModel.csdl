@@ -82,6 +82,9 @@
     <NavigationProperty Name="Reviews" Relationship="Self.FK_review_userID" FromRole="Users" ToRole="Reviews" />
     <NavigationProperty Name="Addresses" Relationship="CVGSModel.FK__Addresses__userI__239E4DCF" FromRole="User" ToRole="Address" />
     <NavigationProperty Name="CreditCards" Relationship="CVGSModel.FK__CreditCar__userI__267ABA7A" FromRole="User" ToRole="CreditCard" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_categoryID">
     <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
@@ -186,7 +189,7 @@
     <Property Name="creditCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="userID" Type="Int32" Nullable="false" />
     <Property Name="owner" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="cardNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="cardNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="code" Type="Int32" Nullable="false" />
     <Property Name="expiredDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="isDefault" Type="Int32" Nullable="false" />

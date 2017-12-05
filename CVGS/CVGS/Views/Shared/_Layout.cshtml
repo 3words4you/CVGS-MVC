@@ -37,6 +37,8 @@
                     @if (Session["role"] != null && Session["role"].ToString() == "member")
                     {
                         <li>@Html.ActionLink("Address", "Index", "Address")</li>
+                        <li>@Html.ActionLink("CreditCard", "Index", "CreditCard")</li>
+                        <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
                     }
 
                     
