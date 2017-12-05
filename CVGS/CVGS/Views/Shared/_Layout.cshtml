@@ -34,6 +34,11 @@
                     {
                         <li>@Html.ActionLink("Review", "Index", "Review")</li>
                     }
+                    @if (Session["role"] != null && Session["role"].ToString() == "member")
+                    {
+                        <li>@Html.ActionLink("Address", "Index", "Address")</li>
+                    }
+
                     
                 </ul>
                 <span class="navbar-text navbar-right">

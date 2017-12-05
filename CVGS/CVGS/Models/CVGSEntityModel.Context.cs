@@ -31,5 +31,7 @@ namespace CVGS.Models
         public virtual DbSet<Platform> Platforms { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<CreditCard> CreditCards { get; set; }
     }
 }

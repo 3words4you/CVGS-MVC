@@ -1,11 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CVGSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="addressID" />
+    </Key>
+    <Property Name="addressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="province" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="city" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="isDefault" Type="int" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" Nullable="false" />
+    <Property Name="updatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="categoryID" />
     </Key>
     <Property Name="categoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="categoryName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CreditCards">
+    <Key>
+      <PropertyRef Name="creditCardID" />
+    </Key>
+    <Property Name="creditCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="owner" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cardNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="code" Type="int" Nullable="false" />
+    <Property Name="expiredDate" Type="datetime" Nullable="false" />
+    <Property Name="isDefault" Type="int" Nullable="false" />
     <Property Name="createdDate" Type="datetime" />
     <Property Name="updatedDate" Type="datetime" />
   </EntityType>
@@ -73,6 +100,30 @@
     <Property Name="createdDate" Type="datetime" />
     <Property Name="updatedDate" Type="datetime" />
   </EntityType>
+  <Association Name="FK__Addresses__userI__239E4DCF">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CreditCar__userI__267ABA7A">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="CreditCards" Type="Self.CreditCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="CreditCards">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_categoryID">
     <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
     <End Role="Games" Type="Self.Games" Multiplicity="*" />
@@ -109,25 +160,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_subCategoryID">
-    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
-    <End Role="Games" Type="Self.Games" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Categories">
-        <PropertyRef Name="categoryID" />
-      </Principal>
-      <Dependent Role="Games">
-        <PropertyRef Name="subCategoryID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="CVGSModelStoreContainer">
+    <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CreditCards" EntityType="Self.CreditCards" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Platforms" EntityType="Self.Platforms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Addresses__userI__239E4DCF" Association="Self.FK__Addresses__userI__239E4DCF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CreditCar__userI__267ABA7A" Association="Self.FK__CreditCar__userI__267ABA7A">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CreditCards" EntitySet="CreditCards" />
+    </AssociationSet>
     <AssociationSet Name="FK_categoryID" Association="Self.FK_categoryID">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Games" EntitySet="Games" />
@@ -139,10 +188,6 @@
     <AssociationSet Name="FK_review_userID" Association="Self.FK_review_userID">
       <End Role="Users" EntitySet="Users" />
       <End Role="Reviews" EntitySet="Reviews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_subCategoryID" Association="Self.FK_subCategoryID">
-      <End Role="Categories" EntitySet="Categories" />
-      <End Role="Games" EntitySet="Games" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -18,6 +18,8 @@ namespace CVGS.Models
         public User()
         {
             this.Reviews = new HashSet<Review>();
+            this.Addresses = new HashSet<Address>();
+            this.CreditCards = new HashSet<CreditCard>();
         }
     
         public int userID { get; set; }
@@ -32,5 +34,9 @@ namespace CVGS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Address> Addresses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CreditCard> CreditCards { get; set; }
     }
 }

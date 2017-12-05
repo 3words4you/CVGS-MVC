@@ -9,12 +9,16 @@
         <EntityTypeShape EntityType="CVGSModel.Event" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGSModel.Game" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGSModel.Platform" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGSModel.Review" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGSModel.Review" Width="1.5" PointX="6.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGSModel.User" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
         <AssociationConnector Association="CVGSModel.FK_categoryID" ManuallyRouted="false" />
         <AssociationConnector Association="CVGSModel.FK_subCategoryID" ManuallyRouted="false" />
         <AssociationConnector Association="CVGSModel.FK_review_gameID" ManuallyRouted="false" />
         <AssociationConnector Association="CVGSModel.FK_review_userID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CVGSModel.Address" Width="1.5" PointX="5.25" PointY="13.5" />
+        <EntityTypeShape EntityType="CVGSModel.CreditCard" Width="1.5" PointX="5.25" PointY="9.875" />
+        <AssociationConnector Association="CVGSModel.FK__Addresses__userI__239E4DCF" />
+        <AssociationConnector Association="CVGSModel.FK__CreditCar__userI__267ABA7A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

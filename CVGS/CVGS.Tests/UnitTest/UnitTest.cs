@@ -160,7 +160,7 @@ namespace CVGS.Tests.UnitTest
         }
 
         [TestMethod]
-        public void TestEventStartDateShouldMoreThanEndDateShouldFail()
+        public void TestEventStartDateMoreThanEndDateShouldFail()
         {
             // Arrange
             var e = this.e;
