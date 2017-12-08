@@ -11,7 +11,8 @@ namespace CVGS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,16 +24,26 @@ namespace CVGS.Models
         }
     
         public int userID { get; set; }
+        [Display(Name = "Username")]
         public string username { get; set; }
+        [Display(Name = "Password")]
         public string password { get; set; }
+        [Display(Name = "Nickname")]
         public string nickname { get; set; }
         public string gender { get; set; }
+        [Display(Name = "Date Of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> dob { get; set; }
         public string role { get; set; }
         public Nullable<System.DateTime> createdDate { get; set; }
         public Nullable<System.DateTime> updatedDate { get; set; }
+        [Display(Name = "Phone")]
         public string phone { get; set; }
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
+        [Display(Name = "Avatar")]
         public string avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
