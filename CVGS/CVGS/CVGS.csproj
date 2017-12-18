@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CreditCardController.cs" />
     <Compile Include="Controllers\EventController.cs" />
@@ -160,11 +161,15 @@
     <Compile Include="Controllers\PlatformController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserGamesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Address.cs">
+      <DependentUpon>CVGSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CartItem.cs">
       <DependentUpon>CVGSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
@@ -192,6 +197,12 @@
       <DependentUpon>CVGSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Game.cs">
+      <DependentUpon>CVGSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>CVGSEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderItem.cs">
       <DependentUpon>CVGSEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Platform.cs">
@@ -301,6 +312,13 @@
     <Content Include="Views\User\profileDetail.cshtml" />
     <Content Include="Views\User\EditProfile.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\UserGames\Create.cshtml" />
+    <Content Include="Views\UserGames\Delete.cshtml" />
+    <Content Include="Views\UserGames\Details.cshtml" />
+    <Content Include="Views\UserGames\Edit.cshtml" />
+    <Content Include="Views\UserGames\Index.cshtml" />
+    <Content Include="Views\Game\AddReview.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

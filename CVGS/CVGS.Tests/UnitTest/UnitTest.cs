@@ -355,5 +355,81 @@ namespace CVGS.Tests.UnitTest
                 Assert.Fail("got an exception: " + ex.GetBaseException().Message);
             }
         }
+
+        //all USer test
+        UserController uCtl = new UserController();
+        User u = new User()
+        {
+           
+            username = null,
+            password = "password",
+            email = "123",
+            phone = "5191234567",
+            gender = "male",
+            nickname = "nickname",
+            avatar = "avatar",
+            dob = DateTime.Now,
+            createdDate = DateTime.Now,
+            updatedDate = DateTime.Now,
+        };
+
+        [TestMethod]
+        public void TestUpdateProfileWithAnIncorrectEmailFormatShouldFailed()
+        {
+            // Arrange
+            var u = this.u;
+            //u.email = "123";
+
+            // Act
+            try
+            {
+                var result = uCtl.EditProfile(u);
+                Assert.IsInstanceOfType(result, typeof(RedirectToRouteResult));
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                Assert.AreEqual("123",u.email);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("got an exception: " + ex.GetBaseException().Message);
+            }
+        }
+
+        //all Address test
+        AddressController adCtl = new AddressController();
+        Address a = new Address()
+        {
+            addressID = 10000,
+            userID = 10000,
+            province = "province",
+            city = "city",
+            address1 = "address1",
+            isDefault = 0,
+            createdDate = DateTime.Now,
+            updatedDate = DateTime.Now,
+        };
+
+        [TestMethod]
+        public void TestAddUserAddressWithoutProvinceOrCityOrAddressShouldFailed()
+        {
+            // Arrange
+            var a = this.a;
+            // Act
+
+            try
+            {
+                var result = adCtl.Create(a);
+                Assert.IsInstanceOfType(result, typeof(RedirectToRouteResult));
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                Assert.IsNull(a.province);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("got an exception: " + ex.GetBaseException().Message);
+            }
+        }
     }
 }

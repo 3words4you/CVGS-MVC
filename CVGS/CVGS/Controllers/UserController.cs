@@ -41,7 +41,7 @@ namespace CVGS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile([Bind(Include = "userID,nickname,gender,dob,phone,email")] User tempUserProfile)
+        public ActionResult EditProfile([Bind(Include = "userID,username,nickname,gender,dob,phone,email")] User tempUserProfile)
         {
             if (ModelState.IsValid)
             {

@@ -57,7 +57,7 @@ namespace CVGS.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Session["userID"] == null)
+                if (Session == null || Session["userID"] == null)
                 {
                     return RedirectToAction("Index", "Home");
                 }

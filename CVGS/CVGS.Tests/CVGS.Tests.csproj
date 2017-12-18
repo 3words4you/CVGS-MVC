@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CVGS\CVGS.csproj">
-      <Project>{E0148CA6-34E2-48EB-804C-7ABBECC39512}</Project>
+      <Project>{e0148ca6-34e2-48eb-804c-7abbecc39512}</Project>
       <Name>CVGS</Name>
     </ProjectReference>
   </ItemGroup>

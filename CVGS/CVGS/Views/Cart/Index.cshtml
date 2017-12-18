@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CVGS.Models.CartItem>
+
+@{
+    ViewBag.Title = "Index";
+    var total = ViewBag.total;
+    var creditCardCount = ViewBag.creditCardCount;
+    var addressCount = ViewBag.addressCount;
+}
+
+@if ((string)TempData["msg"] == "Order is Paid")
+{
+    <script>
+        alert("Order Is Paid!!!");
+    </script>
+}
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Game.title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Game.price)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.title)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.price)
+            </td>
+          
+            <td>
+                @using (Html.BeginForm("Remove", "Cart"))
+                {
+                    @Html.Hidden("id", item.itemID)
+                    
+                        <input type="submit" value="Remove" class="btn btn-danger" />
+                    
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<hr />
+@using (Html.BeginForm("Checkout", "Cart"))
+{
+    <div>Choose Address</div>
+    @Html.DropDownList("addressID", null, htmlAttributes: new { @class = "form-control" })
+    <br />
+    <div>Choose Credit Card</div>
+    @Html.DropDownList("creditCardID", null, htmlAttributes: new { @class = "form-control" })
+    <br />
+    <div>Total: @total</div>
+    <input type="text" name="cost" value=@total hidden/>
+    <br />
+    if (addressCount == 0)
+    {
+        <li>@Html.ActionLink("Add address", "Create", "Address")</li>
+    }
+    if (creditCardCount == 0)
+    {
+        <li>@Html.ActionLink("Add Credit Card", "Create", "CreditCard")</li>
+    }
+    if (total > 0 && creditCardCount>0 && addressCount>0)
+    {
+        <input type="submit" value="Checkout" class="btn btn-primary" />
+    }
+}

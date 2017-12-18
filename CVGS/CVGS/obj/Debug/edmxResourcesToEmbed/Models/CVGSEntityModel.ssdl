@@ -13,6 +13,16 @@
     <Property Name="createdDate" Type="datetime" Nullable="false" />
     <Property Name="updatedDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="CartItems">
+    <Key>
+      <PropertyRef Name="itemID" />
+    </Key>
+    <Property Name="itemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="gameID" Type="int" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="categoryID" />
@@ -61,6 +71,30 @@
     <Property Name="price" Type="decimal" Precision="12" Scale="2" />
     <Property Name="categoryID" Type="int" />
     <Property Name="subCategoryID" Type="int" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="creditCard" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="fullAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cost" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="displayStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="updatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OrderItems">
+    <Key>
+      <PropertyRef Name="itemID" />
+    </Key>
+    <Property Name="itemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderID" Type="int" Nullable="false" />
+    <Property Name="gameID" Type="int" Nullable="false" />
     <Property Name="createdDate" Type="datetime" />
     <Property Name="updatedDate" Type="datetime" />
   </EntityType>
@@ -127,6 +161,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_cartItem_gameID">
+    <End Role="Games" Type="Self.Games" Multiplicity="1" />
+    <End Role="CartItems" Type="Self.CartItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Games">
+        <PropertyRef Name="gameID" />
+      </Principal>
+      <Dependent Role="CartItems">
+        <PropertyRef Name="gameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cartItem_userID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="CartItems" Type="Self.CartItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="CartItems">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_categoryID">
     <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
     <End Role="Games" Type="Self.Games" Multiplicity="*" />
@@ -136,6 +194,42 @@
       </Principal>
       <Dependent Role="Games">
         <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_userID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderItem_gameID">
+    <End Role="Games" Type="Self.Games" Multiplicity="1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Games">
+        <PropertyRef Name="gameID" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="gameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderItem_orderID">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="orderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -165,10 +259,13 @@
   </Association>
   <EntityContainer Name="CVGSModelStoreContainer">
     <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CartItems" EntityType="Self.CartItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CreditCards" EntityType="Self.CreditCards" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Platforms" EntityType="Self.Platforms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -180,9 +277,29 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="CreditCards" EntitySet="CreditCards" />
     </AssociationSet>
+    <AssociationSet Name="FK_cartItem_gameID" Association="Self.FK_cartItem_gameID">
+      <End Role="Games" EntitySet="Games" />
+      <End Role="CartItems" EntitySet="CartItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cartItem_userID" Association="Self.FK_cartItem_userID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CartItems" EntitySet="CartItems" />
+    </AssociationSet>
     <AssociationSet Name="FK_categoryID" Association="Self.FK_categoryID">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_userID" Association="Self.FK_order_userID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderItem_gameID" Association="Self.FK_orderItem_gameID">
+      <End Role="Games" EntitySet="Games" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderItem_orderID" Association="Self.FK_orderItem_orderID">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
     </AssociationSet>
     <AssociationSet Name="FK_review_gameID" Association="Self.FK_review_gameID">
       <End Role="Games" EntitySet="Games" />

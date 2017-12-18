@@ -4,11 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Index</h2>
+@if (Session["role"] != null && Session["role"].ToString() == "employee")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+@if ((string)TempData["msg"] == "not owned")
+{
+    <script>
+        alert("Game is not owned, can not add review!!!");
+    </script>
+}
+@if ((string)TempData["msg"] == "added to cart")
+{
+    <script>
+        alert("Game is added to card!!!");
+    </script>
+}
 <table class="table">
     <tr>
         <th>
@@ -38,9 +54,25 @@
             @Html.DisplayFor(modelItem => item.updatedDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.gameID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.gameID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.gameID })
+            @if (Session["role"] != null && Session["role"].ToString() == "member")
+            {
+                using (Html.BeginForm("AddToCart", "Game"))
+                {
+                     @Html.Hidden("gameID", item.gameID)
+                    <span class="form-actions no-color">
+                        <input type="submit" value="AddToCart" class="btn btn-default" />
+                    </span>
+                    <span> | </span>
+                    <span>@Html.ActionLink("Add Review", "AddReview", new { id = item.gameID })</span>
+                }
+            }
+            else
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.gameID }) <span> | </span>
+                @Html.ActionLink("Details", "Details", new { id = item.gameID })<span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.gameID })
+            }
+            
         </td>
     </tr>
 }
