@@ -11,7 +11,8 @@ namespace CVGS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,15 +20,22 @@ namespace CVGS.Models
         {
             this.OrderItems = new HashSet<OrderItem>();
         }
-    
+
+        [Display(Name = "Order ID")]
         public int orderID { get; set; }
         public int userID { get; set; }
+        [Display(Name = "Credit Card Number")]
         public string creditCard { get; set; }
+        [Display(Name = "Address")]
         public string fullAddress { get; set; }
+        [Display(Name = "Cost")]
         public decimal cost { get; set; }
         public int status { get; set; }
+        [Display(Name = "Current Status")]
         public string displayStatus { get; set; }
+        [Display(Name = "Created At")]
         public Nullable<System.DateTime> createdDate { get; set; }
+        [Display(Name = "Updated At")]
         public Nullable<System.DateTime> updatedDate { get; set; }
     
         public virtual User User { get; set; }

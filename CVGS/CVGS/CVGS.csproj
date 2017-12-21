@@ -158,6 +158,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PlatformController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -320,6 +321,8 @@
     <Content Include="Views\Game\AddReview.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Review\AddReview.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

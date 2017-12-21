@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CVGS.Models.Order>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Order List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.orderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.displayStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.displayStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.updatedDate)
+            </td>
+            <td>
+                @Html.ActionLink("View Detail Or Update Status", "Details", new { id = item.orderID }) |
+            </td>
+        </tr>
+    }
+
+</table>

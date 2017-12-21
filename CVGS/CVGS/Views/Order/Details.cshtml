@@ -1,0 +1,132 @@
+﻿@model CVGS.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.orderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orderID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cost)
+        </dt>
+
+        <dd>
+            $ @Html.DisplayFor(model => model.cost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+        <dt>
+            Customer's Email
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.email)
+        </dd>
+        <dt>
+            Phone Number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.creditCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditCard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fullAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updatedDate)
+        </dd>
+        <dt>
+            Current Order Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayStatus)
+        </dd>
+        
+    </dl>
+    <hr />
+    <div>Order Items</div>
+    <dl class="dl-horizontal">
+        @foreach (var item in ViewBag.orderItems)
+        {
+            <dt>
+                Game
+            </dt>
+
+            <dd>
+                @item.Game.title  
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    
+    @if (Model.status == 1)
+    {
+        using (Html.BeginForm("Delivering", "Order"))
+        {
+            @Html.Hidden("orderID", Model.orderID)
+
+            <span class="form-actions no-color">
+                <input type="submit" value="Update status to delivering" class="btn btn-default" />
+            </span>
+            <span> | </span>
+            @Html.ActionLink("Back to List", "Index")
+
+        }
+    }
+    @if (Model.status == 2)
+    {
+        using (Html.BeginForm("Delivered", "Order"))
+        {
+            @Html.Hidden("orderID", Model.orderID)
+
+            <span class="form-actions no-color">
+                <input type="submit" value="Update status to delivered" class="btn btn-default" />
+            </span>
+            <span> | </span>
+            @Html.ActionLink("Back to List", "Index")
+
+        }
+    }
+    
+</p>
