@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "AddReview";
+    var gameTitle = ViewBag.gameTitle;
+    var gameID = ViewBag.gameID;
+}
+
+<h2>Add Review</h2>
+
+@using (Html.BeginForm("AddReview", "Review"))
+{
+    <input type="text" name="gameID" value=@gameID hidden />
+    <div>Game: @gameTitle</div>
+    <br />
+    <div>Comment</div>
+    <textarea rows="3" name="comment" class="form-control"></textarea>
+    <br />
+    <div>Rating</div>
+    <select name="rating" class="form-control">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br />
+    <input type="submit" value="AddReview" class="btn btn-primary" />
+    
+}

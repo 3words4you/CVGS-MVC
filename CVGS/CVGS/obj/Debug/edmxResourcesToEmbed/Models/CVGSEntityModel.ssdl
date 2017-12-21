@@ -114,6 +114,7 @@
     <Property Name="reviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userID" Type="int" Nullable="false" />
     <Property Name="gameID" Type="int" Nullable="false" />
+    <Property Name="rating" Type="int" />
     <Property Name="comment" Type="text" />
     <Property Name="status" Type="int" />
     <Property Name="displayStatus" Type="varchar" MaxLength="50" />

@@ -119,6 +119,7 @@
           <Property Name="reviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userID" Type="int" Nullable="false" />
           <Property Name="gameID" Type="int" Nullable="false" />
+          <Property Name="rating" Type="int" />
           <Property Name="comment" Type="text" />
           <Property Name="status" Type="int" />
           <Property Name="displayStatus" Type="varchar" MaxLength="50" />
@@ -386,6 +387,7 @@
           <Property Name="updatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Game" Relationship="Self.FK_review_gameID" FromRole="Reviews" ToRole="Games" />
           <NavigationProperty Name="User" Relationship="Self.FK_review_userID" FromRole="Reviews" ToRole="Users" />
+          <Property Name="rating" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -726,6 +728,7 @@
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="CVGSModel.Review">
               <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="reviewID" ColumnName="reviewID" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="gameID" ColumnName="gameID" />

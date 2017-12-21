@@ -210,28 +210,28 @@ namespace CVGS.Controllers
             return View(games.ToList());
         }
 
-        public ActionResult AddReview(int? id)
-        {
-            if (Session == null || Session["userID"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            int userID = Convert.ToInt32(Session["userID"]);
-            var res = db.OrderItems.Where(oi => oi.gameID == id && oi.Order.userID == userID);
-            if (res.Count() > 0)
-            {
-                return View();
-            }
-            else
-            {
-                TempData["msg"] = "not owned";
-                return RedirectToAction("Index");
-            }
+        //public ActionResult AddReview(int? id)
+        //{
+        //    if (Session == null || Session["userID"] == null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    int userID = Convert.ToInt32(Session["userID"]);
+        //    var res = db.OrderItems.Where(oi => oi.gameID == id && oi.Order.userID == userID);
+        //    if (res.Count() > 0)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        TempData["msg"] = "not owned";
+        //        return RedirectToAction("Index");
+        //    }
         
-        }
+        //}
     }
 }

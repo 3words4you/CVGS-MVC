@@ -4,8 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-
-<h2>Index</h2>
+<h2>Game List</h2>
 @if (Session["role"] != null && Session["role"].ToString() == "employee")
 {
     <p>
@@ -23,6 +22,12 @@
 {
     <script>
         alert("Game is added to card!!!");
+    </script>
+}
+@if ((string)TempData["msg"] == "Review is added, waiting for verify")
+{
+    <script>
+        alert((string)@TempData["msg"]);
     </script>
 }
 <table class="table">
@@ -59,11 +64,12 @@
                 using (Html.BeginForm("AddToCart", "Game"))
                 {
                      @Html.Hidden("gameID", item.gameID)
+                    @Html.ActionLink("Details", "Details", new { id = item.gameID })<span> | </span>
                     <span class="form-actions no-color">
                         <input type="submit" value="AddToCart" class="btn btn-default" />
                     </span>
                     <span> | </span>
-                    <span>@Html.ActionLink("Add Review", "AddReview", new { id = item.gameID })</span>
+                    <span>@Html.ActionLink("Add Review", "AddReview", "Review", new { id = item.gameID }, null)</span>
                 }
             }
             else

@@ -319,6 +319,7 @@
     <Content Include="Views\UserGames\Index.cshtml" />
     <Content Include="Views\Game\AddReview.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Review\AddReview.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

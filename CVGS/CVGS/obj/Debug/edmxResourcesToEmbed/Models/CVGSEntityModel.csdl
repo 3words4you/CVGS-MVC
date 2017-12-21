@@ -67,6 +67,7 @@
     <Property Name="updatedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Game" Relationship="Self.FK_review_gameID" FromRole="Reviews" ToRole="Games" />
     <NavigationProperty Name="User" Relationship="Self.FK_review_userID" FromRole="Reviews" ToRole="Users" />
+    <Property Name="rating" Type="Int32" />
   </EntityType>
   <EntityType Name="User">
     <Key>

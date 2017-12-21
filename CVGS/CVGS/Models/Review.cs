@@ -22,6 +22,7 @@ namespace CVGS.Models
         public string displayStatus { get; set; }
         public Nullable<System.DateTime> createdDate { get; set; }
         public Nullable<System.DateTime> updatedDate { get; set; }
+        public Nullable<int> rating { get; set; }
     
         public virtual Game Game { get; set; }
         public virtual User User { get; set; }
